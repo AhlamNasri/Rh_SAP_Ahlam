@@ -30,7 +30,13 @@ class AppRouter {
       },
       routes: [
         GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
-        _appRoute('/dashboard', 'Dashboard RH', const DashboardPage()),
+        GoRoute(
+          path: '/dashboard',
+          builder: (context, state) {
+            final title = auth.hasAnyRole(['HR', 'ADMIN']) ? 'Dashboard RH' : 'Dashboard Employe';
+            return MainLayout(title: title, child: const DashboardPage());
+          },
+        ),
         _appRoute('/profile', 'Profil Employe', const ProfilePage()),
         _appRoute('/leaves', 'Gestion des Conges', const LeavesPage()),
         _appRoute('/attendance', 'Pointage / Presences', const AttendancePage()),

@@ -25,10 +25,16 @@ class _PerformancePageState extends State<PerformancePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _future = PerformanceService(context.read<ApiClient>()).all();
+    _future = _load();
   }
 
-  void _refresh() => setState(() => _future = PerformanceService(context.read<ApiClient>()).all());
+  Future<List<Map<String, dynamic>>> _load() {
+    final auth = context.read<AuthProvider>();
+    final service = PerformanceService(context.read<ApiClient>());
+    return auth.hasAnyRole(['MANAGER', 'HR', 'ADMIN']) ? service.all() : service.my();
+  }
+
+  void _refresh() => setState(() => _future = _load());
 
   Future<void> _addReview() async {
     final employeeId = TextEditingController(text: '4');
