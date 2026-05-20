@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
-    List<Attendance> findByEmployeeIdOrderByDateDesc(Long employeeId);
+    List<Attendance> findByEmployeeIdOrderByDateDescIdDesc(Long employeeId);
     List<Attendance> findByEmployeeManagerIdOrderByDateDesc(Long managerId);
     Optional<Attendance> findByEmployeeIdAndDate(Long employeeId, LocalDate date);
     long countByDateAndStatusIn(LocalDate date, Collection<AttendanceStatus> statuses);

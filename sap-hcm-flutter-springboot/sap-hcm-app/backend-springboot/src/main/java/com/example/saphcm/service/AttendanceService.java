@@ -45,7 +45,7 @@ public class AttendanceService {
 
     @Transactional(readOnly = true)
     public List<AttendanceDto> myAttendance() {
-        return attendanceRepository.findByEmployeeIdOrderByDateDesc(current.currentEmployee().getId()).stream()
+        return attendanceRepository.findByEmployeeIdOrderByDateDescIdDesc(current.currentEmployee().getId()).stream()
                 .map(mapper::toAttendanceDto).toList();
     }
 
