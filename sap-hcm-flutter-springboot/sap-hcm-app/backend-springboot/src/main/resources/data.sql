@@ -1,0 +1,2 @@
+-- Donnees initialisees par com.example.saphcm.config.DataSeeder afin de hasher les mots de passe BCrypt.
+-- Voir /database/data.sql pour une version SQL lisible des donnees de demonstration.

@@ -1,0 +1,2 @@
+-- Schéma SQL indicatif. En mode demo, Hibernate cree/met a jour les tables automatiquement.
+-- Voir /database/schema.sql pour le script SQL complet PostgreSQL compatible.
