@@ -4,6 +4,9 @@ import com.example.saphcm.dto.PayrollDto;
 import com.example.saphcm.service.PayrollService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +32,15 @@ public class PayrollController {
     @GetMapping("/{id}")
     public PayrollDto get(@PathVariable Long id) {
         return payrollService.getById(id);
+    }
+
+    @GetMapping("/{id}/download")
+    public ResponseEntity<byte[]> download(@PathVariable Long id) {
+        byte[] document = payrollService.generatePayslipPdf(id);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"fiche-paie-" + id + ".pdf\"")
+                .body(document);
     }
 
     @PostMapping
