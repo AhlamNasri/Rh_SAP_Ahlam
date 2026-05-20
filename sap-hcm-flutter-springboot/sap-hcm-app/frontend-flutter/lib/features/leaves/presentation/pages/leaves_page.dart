@@ -29,7 +29,11 @@ class _LeavesPageState extends State<LeavesPage> {
     _future = _load();
   }
 
-  Future<List<Map<String, dynamic>>> _load() => LeavesService(context.read<ApiClient>()).all();
+  Future<List<Map<String, dynamic>>> _load() {
+    final auth = context.read<AuthProvider>();
+    final service = LeavesService(context.read<ApiClient>());
+    return auth.hasAnyRole(['MANAGER', 'HR', 'ADMIN']) ? service.all() : service.my();
+  }
   void _refresh() => setState(() => _future = _load());
 
   Future<void> _openCreateDialog() async {

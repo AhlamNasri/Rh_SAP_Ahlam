@@ -97,7 +97,7 @@ class _MenuItem {
 }
 
 final _menu = [
-  _MenuItem('Dashboard RH', '/dashboard', Icons.dashboard_outlined, []),
+  _MenuItem('Dashboard', '/dashboard', Icons.dashboard_outlined, []),
   _MenuItem('Profil Employe', '/profile', Icons.badge_outlined, []),
   _MenuItem('Gestion des Conges', '/leaves', Icons.beach_access_outlined, []),
   _MenuItem('Pointage / Presences', '/attendance', Icons.access_time, []),
